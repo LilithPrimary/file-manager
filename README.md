@@ -1,2 +1,3 @@
-# file-manager
-Task for RSS Node.js
+# File-manager
+
+[Task](https://github.com/AlreadyBored/nodejs-assignments/blob/main/assignments/file-manager/assignment.md)
