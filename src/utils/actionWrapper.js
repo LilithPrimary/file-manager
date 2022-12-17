@@ -3,8 +3,9 @@ import { cwd } from 'process';
 import { showCurrentDir } from './showCurrentDir.js';
 
 export const actionWrapper = async (action) => {
+  const event = action();
   try {
-    await action();
+    await event;
   } catch (err) {
     console.error(ERROR_MSG);
   } finally {

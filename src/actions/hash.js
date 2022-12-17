@@ -1,10 +1,10 @@
+import { createHash } from 'crypto';
 import { createReadStream } from 'fs';
 import { resolve } from 'path';
-
 import { actionWrapper } from '../utils/actionWrapper.js';
 import { isFileExist } from '../utils/isFileExist.js';
 
-export const cat = ([file]) => {
+export const hash = ([file]) => {
   actionWrapper(
     () =>
       new Promise(async (res, rej) => {
@@ -13,13 +13,14 @@ export const cat = ([file]) => {
         await isFileExist(path).catch(rej);
 
         const read = createReadStream(path);
+        const hash = createHash('sha256');
 
         read.on('data', (chunk) => {
-          process.stdout.write(chunk);
+          hash.update(chunk);
         });
 
         read.on('end', () => {
-          process.stdout.write('\n\n');
+          console.log('\n', hash.digest('hex'), '\n');
           res();
         });
 
