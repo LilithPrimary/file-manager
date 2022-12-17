@@ -20,7 +20,7 @@ export const hash = ([file]) => {
         });
 
         read.on('end', () => {
-          console.log('\n', hash.digest('hex'), '\n');
+          console.log(hash.digest('hex'));
           res();
         });
 

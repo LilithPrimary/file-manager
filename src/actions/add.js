@@ -8,6 +8,6 @@ export const add = ([file]) => {
   actionWrapper(async () => {
     const newFile = await open(join(cwd(), file), 'ax');
     newFile.close();
-    console.info(`File "${file}" is successfully created\n`);
+    console.info(`File "${file}" is successfully created`);
   });
 };

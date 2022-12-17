@@ -5,6 +5,6 @@ import { actionWrapper } from '../utils/actionWrapper.js';
 export const rm = ([file]) => {
   actionWrapper(async () => {
     await removeFile(resolve(file));
-    console.info(`File is successfully delete\n`);
+    console.info(`File is successfully delete`);
   });
 };

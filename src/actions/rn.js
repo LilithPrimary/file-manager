@@ -6,6 +6,6 @@ export const rn = ([currentName, targetName]) => {
   actionWrapper(async () => {
     const { dir } = parse(currentName);
     await rename(resolve(currentName), resolve(dir, targetName));
-    console.info(`Rename successfully\n`);
+    console.info(`Rename successfully`);
   });
 };
