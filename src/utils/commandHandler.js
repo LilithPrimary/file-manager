@@ -1,16 +1,18 @@
-import { add } from '../actions/add.js';
-import { cat } from '../actions/cat.js';
-import { cd } from '../actions/cd.js';
-import { compress } from '../actions/compress.js';
-import { cp } from '../actions/cp.js';
-import { decompress } from '../actions/decompress.js';
-import { hash } from '../actions/hash.js';
-import { ls } from '../actions/ls.js';
-import { mv } from '../actions/mv.js';
-import { os } from '../actions/os.js';
-import { rm } from '../actions/rm.js';
-import { rn } from '../actions/rn.js';
-import { up } from '../actions/up.js';
+import {
+  add,
+  cat,
+  cd,
+  compress,
+  cp,
+  decompress,
+  hash,
+  ls,
+  mv,
+  os,
+  rm,
+  rn,
+  up,
+} from '../actions/index.js';
 import { INVALID_INPUT_ERROR_MSG } from '../const/INVALID_INPUT_ERROR_MSG.js';
 import { showCurrentDir } from './showCurrentDir.js';
 
