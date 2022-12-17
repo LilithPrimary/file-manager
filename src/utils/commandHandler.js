@@ -1,3 +1,4 @@
+import { cat } from '../actions/cat.js';
 import { cd } from '../actions/cd.js';
 import { ls } from '../actions/ls.js';
 import { up } from '../actions/up.js';
@@ -10,10 +11,13 @@ export const commandHandler = (command, args) => {
       up();
       break;
     case 'cd':
-      cd(...args);
+      cd(args);
       break;
     case 'ls':
       ls();
+      break;
+    case 'cat':
+      cat(args);
       break;
     default:
       console.error(INVALID_INPUT_ERROR_MSG);
