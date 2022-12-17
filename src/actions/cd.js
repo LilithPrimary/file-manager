@@ -1,9 +1,12 @@
-import { actionWrapper } from '../utils/actionWrapper.js';
-import { getDir } from '../utils/getDir.js';
+import { resolve } from 'path';
 
-export const cd = (args) => {
-  const dir = getDir(args);
-  actionWrapper(() => {
-    process.chdir(dir);
+import { actionWrapper } from '../utils/actionWrapper.js';
+import { isFileExist } from '../utils/isFileExist.js';
+
+export const cd = ([path]) => {
+  actionWrapper(async () => {
+    const dir = resolve(path);
+    await isFileExist(dir);
+    process.chdir(path);
   });
 };
