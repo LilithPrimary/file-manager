@@ -6,24 +6,24 @@ import { isFileExist } from '../utils/isFileExist.js';
 
 export const cat = ([file]) => {
   actionWrapper(
-    () =>
+    async () =>
       new Promise(async (res, rej) => {
-        const path = resolve(file);
+        try {
+          const path = resolve(file);
 
-        await isFileExist(path).catch(rej);
+          await isFileExist(path);
 
-        const read = createReadStream(path);
+          const read = createReadStream(path);
 
-        read.on('data', (chunk) => {
-          process.stdout.write(chunk);
-        });
+          read.pipe(process.stdout).on('error', rej);
 
-        read.on('end', () => {
-          process.stdout.write('\n\n');
-          res();
-        });
-
-        read.on('error', rej);
+          read.on('end', () => {
+            process.stdout.write('\n\n');
+            res();
+          });
+        } catch (err) {
+          rej(err);
+        }
       })
   );
 };

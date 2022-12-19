@@ -8,23 +8,26 @@ export const hash = ([file]) => {
   actionWrapper(
     () =>
       new Promise(async (res, rej) => {
-        const path = resolve(file);
+        try {
+          const path = resolve(file);
 
-        await isFileExist(path).catch(rej);
+          await isFileExist(path);
 
-        const read = createReadStream(path);
-        const hash = createHash('sha256');
+          const read = createReadStream(path);
+          const hash = createHash('sha256');
 
-        read.on('data', (chunk) => {
-          hash.update(chunk);
-        });
+          read
+            .pipe(hash.setEncoding('hex'))
+            .pipe(process.stdout)
+            .on('error', rej);
 
-        read.on('end', () => {
-          console.log(hash.digest('hex'));
-          res();
-        });
-
-        read.on('error', rej);
+          hash.on('end', () => {
+            console.log('');
+            res();
+          });
+        } catch (err) {
+          rej(err);
+        }
       })
   );
 };

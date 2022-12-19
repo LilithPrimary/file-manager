@@ -20,7 +20,7 @@ const fileManager = () => {
   rl.on('line', (line) => {
     console.log('');
     if (trimString(line) === EXIT_COMMAND) {
-      r1.close();
+      rl.close();
     }
     lineParser(trimString(line));
   });
